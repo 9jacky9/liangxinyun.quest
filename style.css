@@ -1,0 +1,882 @@
+/* 良心云 liangxinyun.quest - 匠心天平护盾之心与深海赤金探索风格 */
+:root {
+  --navy-abyss: #0F172A;
+  --indigo-slate: #1E293B;
+  --indigo-card: #162033;
+  --heart-flame: #F43F5E;
+  --artisan-gold: #F59E0B;
+  --gold-bright: #FBBF24;
+  --emerald-ok: #10B981;
+  --text-alabaster: #F8FAFC;
+  --text-silver: #CBD5E1;
+  --text-muted: #94A3B8;
+  --border-steel: #334155;
+  --shadow-quest: 0 20px 44px -10px rgba(2, 6, 23, 0.65), 0 0 24px rgba(244, 63, 94, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background-color: var(--navy-abyss);
+  color: var(--text-silver);
+  line-height: 1.78;
+}
+
+/* 醒目赤金超链接，访问前后保持一致，绝不使用默认蓝紫 */
+a,
+a:link,
+a:visited {
+  color: var(--gold-bright);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+a:hover,
+a:active {
+  color: var(--heart-flame);
+  text-decoration: underline;
+}
+
+.deck-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Header */
+.quest-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(15, 23, 42, 0.95);
+  border-bottom: 1px solid var(--border-steel);
+}
+
+.deck-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  gap: 16px;
+}
+
+.quest-brand,
+.quest-brand:link,
+.quest-brand:visited {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-alabaster);
+  text-decoration: none;
+}
+
+.quest-brand-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.quest-brand-title {
+  font-size: 1.42rem;
+  font-weight: 900;
+  color: var(--text-alabaster);
+  line-height: 1.15;
+}
+
+.quest-brand-badge {
+  font-size: 0.72rem;
+  color: var(--artisan-gold);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.quest-nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.quest-nav-list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.quest-nav-link,
+.quest-nav-link:link,
+.quest-nav-link:visited {
+  color: var(--text-silver);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.quest-nav-link:hover,
+.quest-nav-link.active-quest {
+  color: var(--gold-bright);
+  background: var(--indigo-slate);
+  text-decoration: none;
+}
+
+.quest-cta-btn,
+.quest-cta-btn:link,
+.quest-cta-btn:visited {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #F43F5E 0%, #D97706 100%);
+  color: #FFFFFF;
+  font-size: 0.94rem;
+  font-weight: 800;
+  padding: 9px 22px;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(244, 63, 94, 0.30);
+  text-decoration: none;
+}
+
+.quest-cta-btn:hover {
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+/* Keyframes */
+@keyframes astrolabeRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes shieldPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+@keyframes beamDash {
+  0% { stroke-dashoffset: 320; }
+  100% { stroke-dashoffset: 0; }
+}
+
+/* Command-Deck Hero */
+.command-hero {
+  padding: 64px 0 50px;
+}
+
+.command-grid {
+  display: grid;
+  grid-template-columns: 1.06fr 0.94fr;
+  gap: 42px;
+  align-items: center;
+}
+
+.crest-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--indigo-slate);
+  border: 1px solid #475569;
+  color: var(--gold-bright);
+  padding: 6px 16px;
+  border-radius: 8px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.crest-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--emerald-ok);
+  box-shadow: 0 0 8px var(--emerald-ok);
+}
+
+.command-h1 {
+  font-size: 2.7rem;
+  line-height: 1.25;
+  font-weight: 900;
+  color: var(--text-alabaster);
+  margin-bottom: 20px;
+}
+
+.command-h1 .flame-span {
+  color: var(--heart-flame);
+}
+
+.command-h1 .gold-span {
+  color: var(--gold-bright);
+}
+
+.command-desc {
+  font-size: 1.1rem;
+  color: var(--text-silver);
+  margin-bottom: 28px;
+}
+
+.command-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.btn-flame-primary,
+.btn-flame-primary:link,
+.btn-flame-primary:visited {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #F43F5E 0%, #E11D48 100%);
+  color: #FFFFFF;
+  font-size: 1.05rem;
+  font-weight: 800;
+  padding: 15px 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(244, 63, 94, 0.35);
+  text-decoration: none;
+}
+
+.btn-flame-primary:hover {
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.btn-gold-rank,
+.btn-gold-rank:link,
+.btn-gold-rank:visited {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--indigo-slate);
+  color: var(--gold-bright);
+  border: 2px solid var(--artisan-gold);
+  font-size: 1.03rem;
+  font-weight: 800;
+  padding: 13px 26px;
+  border-radius: 12px;
+  text-decoration: none;
+}
+
+.btn-gold-rank:hover {
+  background: #283548;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.telemetry-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  background: var(--indigo-card);
+  border: 1px solid var(--border-steel);
+  border-radius: 14px;
+  padding: 16px 20px;
+}
+
+.tele-item strong {
+  display: block;
+  font-size: 1.32rem;
+  color: var(--gold-bright);
+  font-weight: 900;
+}
+
+.tele-item span {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* Astrolabe Stage */
+.astrolabe-panel {
+  background: radial-gradient(circle at center, #1E293B 0%, #0F172A 100%);
+  border: 1.5px solid var(--border-steel);
+  border-radius: 22px;
+  padding: 22px;
+  box-shadow: var(--shadow-quest);
+}
+
+.astrolabe-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--border-steel);
+  font-size: 0.84rem;
+  color: var(--text-alabaster);
+  font-weight: 700;
+}
+
+.astrolabe-status {
+  color: var(--emerald-ok);
+  font-size: 0.78rem;
+}
+
+.astrolabe-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.compass-ring-rot {
+  transform-origin: 230px 175px;
+  animation: astrolabeRotate 24s infinite linear;
+}
+
+.heart-shield-core {
+  transform-origin: 230px 175px;
+  animation: shieldPulse 2.6s infinite ease-in-out;
+}
+
+.route-beam {
+  stroke-dasharray: 320;
+  animation: beamDash 3.6s infinite linear;
+}
+
+/* Divider */
+.astrolabe-divider {
+  width: 100%;
+  overflow: hidden;
+  padding: 8px 0;
+}
+
+.astrolabe-divider svg {
+  width: 100%;
+  height: 44px;
+  display: block;
+}
+
+/* Sections */
+.quest-section {
+  padding: 68px 0;
+}
+
+.quest-section.slate-band {
+  background: #131D31;
+}
+
+.quest-sec-head {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 48px;
+}
+
+.quest-tag-badge {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--gold-bright);
+  background: var(--indigo-slate);
+  border: 1px solid var(--border-steel);
+  padding: 4px 14px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.quest-sec-head h2 {
+  font-size: 2.1rem;
+  color: var(--text-alabaster);
+  font-weight: 900;
+  margin-bottom: 12px;
+}
+
+.quest-sec-head p {
+  font-size: 1.02rem;
+  color: var(--text-muted);
+}
+
+/* 3-Card Armored Advantage Grid */
+.armor-trio {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+
+.armor-card {
+  background: var(--indigo-card);
+  border: 1px solid var(--border-steel);
+  border-top: 3px solid var(--artisan-gold);
+  border-radius: 18px;
+  padding: 30px 26px;
+  box-shadow: var(--shadow-quest);
+}
+
+.armor-icon {
+  margin-bottom: 18px;
+}
+
+.armor-card h3 {
+  font-size: 1.26rem;
+  color: var(--text-alabaster);
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.armor-card p {
+  font-size: 0.96rem;
+  color: var(--text-silver);
+  margin-bottom: 16px;
+}
+
+.armor-spec {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--emerald-ok);
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+/* 4-Card High-Throughput Matrix */
+.matrix-quad {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.matrix-unit {
+  background: var(--indigo-card);
+  border: 1px solid var(--border-steel);
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: var(--shadow-quest);
+}
+
+.matrix-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.matrix-top h3 {
+  font-size: 1.24rem;
+  color: var(--text-alabaster);
+  font-weight: 800;
+}
+
+.matrix-unit p {
+  font-size: 0.96rem;
+  color: var(--text-silver);
+  margin-bottom: 14px;
+}
+
+.matrix-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.matrix-pill {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--gold-bright);
+  background: var(--indigo-slate);
+  border: 1px solid var(--border-steel);
+  padding: 3px 10px;
+  border-radius: 6px;
+}
+
+/* 3-Column Expedition Pricing */
+.tariff-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+
+.tariff-card {
+  background: var(--indigo-card);
+  border: 1px solid var(--border-steel);
+  border-radius: 20px;
+  padding: 34px 28px;
+  box-shadow: var(--shadow-quest);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.tariff-card.flagship-shield {
+  border: 2px solid var(--artisan-gold);
+  background: linear-gradient(180deg, #1E293B 0%, #162033 100%);
+}
+
+.shield-flag {
+  position: absolute;
+  top: -13px;
+  right: 24px;
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  color: #0F172A;
+  font-size: 0.78rem;
+  font-weight: 900;
+  padding: 4px 14px;
+  border-radius: 6px;
+}
+
+.tariff-name {
+  font-size: 1.35rem;
+  color: var(--text-alabaster);
+  font-weight: 900;
+  margin-bottom: 6px;
+}
+
+.tariff-sub {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 18px;
+}
+
+.tariff-price-row {
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px dashed var(--border-steel);
+}
+
+.tariff-num {
+  font-size: 2.45rem;
+  font-weight: 900;
+  color: var(--gold-bright);
+}
+
+.tariff-unit {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.tariff-specs {
+  list-style: none;
+  margin-bottom: 26px;
+}
+
+.tariff-specs li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  color: var(--text-silver);
+}
+
+.tariff-btn,
+.tariff-btn:link,
+.tariff-btn:visited {
+  display: block;
+  text-align: center;
+  background: linear-gradient(135deg, #F43F5E 0%, #D97706 100%);
+  color: #FFFFFF;
+  font-weight: 800;
+  padding: 13px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.tariff-btn:hover {
+  color: #FFFFFF;
+  opacity: 0.93;
+  text-decoration: none;
+}
+
+/* FAQ & Logs */
+.dossier-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.dossier-box {
+  background: var(--indigo-card);
+  border: 1px solid var(--border-steel);
+  border-left: 4px solid var(--heart-flame);
+  border-radius: 14px;
+  padding: 24px;
+}
+
+.dossier-box h3 {
+  font-size: 1.12rem;
+  color: var(--text-alabaster);
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.log-trio {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.log-card {
+  background: var(--indigo-card);
+  border: 1px solid var(--border-steel);
+  border-radius: 18px;
+  padding: 26px;
+}
+
+.log-text {
+  font-size: 0.95rem;
+  color: var(--text-silver);
+  margin-bottom: 18px;
+}
+
+.log-meta {
+  border-top: 1px solid var(--border-steel);
+  padding-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.84rem;
+  color: var(--gold-bright);
+  font-weight: 700;
+}
+
+/* Hub & Article Pages */
+.quest-page-hero {
+  background: #131D31;
+  border-bottom: 1px solid var(--border-steel);
+  padding: 50px 0 38px;
+  text-align: center;
+}
+
+.quest-page-hero h1 {
+  font-size: 2.25rem;
+  color: var(--text-alabaster);
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.quest-page-hero p {
+  max-width: 700px;
+  margin: 0 auto;
+  color: var(--text-silver);
+}
+
+.quest-hub-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+  padding: 50px 0;
+}
+
+.quest-hub-card {
+  background: var(--indigo-card);
+  border: 1px solid var(--border-steel);
+  border-radius: 18px;
+  padding: 26px;
+  box-shadow: var(--shadow-quest);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.quest-hub-badge {
+  display: inline-block;
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: var(--gold-bright);
+  background: var(--indigo-slate);
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.quest-hub-card h2 {
+  font-size: 1.2rem;
+  line-height: 1.45;
+  margin-bottom: 12px;
+}
+
+.quest-hub-card h2 a,
+.quest-hub-card h2 a:link,
+.quest-hub-card h2 a:visited {
+  color: var(--text-alabaster);
+  text-decoration: none;
+}
+
+.quest-hub-card h2 a:hover {
+  color: var(--gold-bright);
+}
+
+.quest-hub-card p {
+  font-size: 0.93rem;
+  color: var(--text-muted);
+  margin-bottom: 18px;
+}
+
+.quest-article-box {
+  max-width: 860px;
+  margin: 46px auto;
+  background: var(--indigo-card);
+  border: 1px solid var(--border-steel);
+  border-radius: 20px;
+  padding: 44px 48px;
+  box-shadow: var(--shadow-quest);
+}
+
+.quest-article-meta {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  padding-bottom: 14px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--border-steel);
+}
+
+.quest-article-box h1 {
+  font-size: 1.98rem;
+  color: var(--text-alabaster);
+  font-weight: 900;
+  margin-bottom: 16px;
+  line-height: 1.35;
+}
+
+.quest-article-box h2 {
+  font-size: 1.4rem;
+  color: var(--text-alabaster);
+  font-weight: 800;
+  margin: 28px 0 12px;
+  padding-left: 12px;
+  border-left: 4px solid var(--artisan-gold);
+}
+
+.quest-article-box h3 {
+  font-size: 1.15rem;
+  color: var(--heart-flame);
+  font-weight: 800;
+  margin: 20px 0 10px;
+}
+
+.quest-article-box p {
+  font-size: 1.02rem;
+  color: var(--text-silver);
+  margin-bottom: 16px;
+  line-height: 1.85;
+}
+
+.quest-cta-banner {
+  margin-top: 32px;
+  padding: 26px;
+  background: var(--indigo-slate);
+  border: 1px solid var(--border-steel);
+  border-radius: 14px;
+  text-align: center;
+}
+
+.quest-cta-banner h3 {
+  color: var(--text-alabaster);
+  margin-bottom: 8px;
+}
+
+/* Footer */
+.quest-footer {
+  background: #0B1120;
+  border-top: 1px solid var(--border-steel);
+  padding: 42px 0;
+  margin-top: 44px;
+}
+
+.footer-deck {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.footer-crest-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-title-strong {
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: var(--text-alabaster);
+}
+
+.footer-sub-motto {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.footer-quad-links {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-copyright {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 960px) {
+  .command-grid,
+  .armor-trio,
+  .matrix-quad,
+  .tariff-grid,
+  .dossier-grid,
+  .log-trio,
+  .quest-hub-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .deck-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .quest-nav {
+    width: 100%;
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .quest-nav-list {
+    display: flex !important;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 8px;
+  }
+  .quest-nav-link {
+    font-size: 0.88rem;
+    padding: 5px 10px;
+    background: var(--indigo-slate);
+    border: 1px solid var(--border-steel);
+  }
+  .quest-cta-btn {
+    width: 100%;
+    padding: 11px 16px;
+  }
+  .command-h1 {
+    font-size: 2rem;
+  }
+  .telemetry-bar {
+    grid-template-columns: 1fr;
+  }
+  .quest-article-box {
+    padding: 26px 20px;
+    margin: 24px 12px;
+  }
+}
